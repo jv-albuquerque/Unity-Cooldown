@@ -4,7 +4,7 @@ public class Cooldown
 {
 
     private float time; // time length of the cooldown
-    private float timer = 0; // the variable used to count
+    private float timer; // the variable used to count
 
     // PAUSE VARIABLES
     private bool paused = false; // the cooldown is paused?
@@ -24,9 +24,9 @@ public class Cooldown
     public Cooldown(float _time, bool start = false)
     {
         time = _time;
-        timer = 0;
+        timer = -1;
 
-        if(start)
+        if (start)
             this.Start();
     }
 
@@ -40,9 +40,9 @@ public class Cooldown
         randomRange = true;
         minTime = _minTime;
         maxTime = _maxTime;
-        timer = 0;
+        timer = -1;
 
-        if(start)
+        if (start)
             this.Start();
     }
 
@@ -50,21 +50,29 @@ public class Cooldown
     /// Set the cooldown to a new time
     /// _time: is the new time of the cooldown
     /// </summary>
-    public void SetTime(float _time)
+    public void SetTime(float _time, bool start = false)
     {
         randomRange = false;
         time = _time;
+        timer = -1;
+
+        if (start)
+            this.Start();
     }
 
     /// <summary>
     /// Set the cooldown to a new time
     /// _time: is the new time of the cooldown
     /// </summary>
-    public void SetTime(float _minTime, float _maxTime)
+    public void SetTime(float _minTime, float _maxTime, bool start = false)
     {
         randomRange = true;
         minTime = _minTime;
         maxTime = _maxTime;
+        timer = -1;
+
+        if (start)
+            this.Start();
     }
 
     /// <summary>
